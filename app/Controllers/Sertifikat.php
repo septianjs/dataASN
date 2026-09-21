@@ -62,7 +62,7 @@ class Sertifikat extends BaseController
 
         echo view('Backend/Template/header');
         echo view(
-            'Backend/Sertifikat/data_sertifikat',
+            'Backend/Admin/Sertifikat/data_sertifikat',
             $dataSertifikat
         );
         echo view('Backend/Template/footer');
@@ -100,7 +100,7 @@ class Sertifikat extends BaseController
         echo view('Backend/Template/header');
 
         echo view(
-            'Backend/Sertifikat/input_sertifikat',
+            'Backend/Admin/Sertifikat/input_sertifikat',
             [
                 'data_asn' => $dataAsn
             ]
@@ -527,7 +527,7 @@ class Sertifikat extends BaseController
         );
 
         echo view(
-            'Backend/Sertifikat/edit_sertifikat',
+            'Backend/Admin/Sertifikat/edit_sertifikat',
             [
                 'data_sertifikat' =>
                     $dataSertifikat,
