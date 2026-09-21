@@ -20,7 +20,7 @@
                     <div class="page-title-wrapper">
 
                         <h3 class="page-title">
-                            KELOLA DATA ASN
+                            KELOLA DATA MANUSIA
                         </h3>
 
                         <div>
