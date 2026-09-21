@@ -46,7 +46,7 @@ class Gaji extends BaseController
 
         // Tampilkan header
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         // Tampilkan view data gaji
@@ -59,7 +59,7 @@ class Gaji extends BaseController
 
         // Tampilkan footer
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -100,7 +100,7 @@ class Gaji extends BaseController
 
         // Header
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         // View input
@@ -113,7 +113,7 @@ class Gaji extends BaseController
 
         // Footer
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -502,7 +502,7 @@ class Gaji extends BaseController
 
         // Header
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
 
@@ -518,7 +518,7 @@ class Gaji extends BaseController
 
         // Footer
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -968,7 +968,7 @@ class Gaji extends BaseController
 
         // Header
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
 
@@ -980,7 +980,7 @@ class Gaji extends BaseController
 
         // Footer
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -1531,12 +1531,12 @@ class Gaji extends BaseController
         $nip = trim($this->request->getPost('nip') ?? session()->get('ses_nip'));
         $data = $nip !== '' ? $this->gajiModel->getGajiByNip($nip) : [];
 
-        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Template/header');
         echo view('Backend/ASN/Gaji/cek_gaji', [
             'nip' => $nip,
             'data_gaji' => $data
         ]);
-        echo view('Backend/Template/footer');
+        echo view('Backend/ASN/Template/footer');
     }
 
 }
