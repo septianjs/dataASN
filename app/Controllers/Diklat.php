@@ -57,12 +57,12 @@ class Diklat extends BaseController
             'data_diklat' => $data
         ];
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
         echo view(
             'Backend/Admin/Diklat/data_diklat',
             $dataDiklat
         );
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -98,7 +98,7 @@ class Diklat extends BaseController
             )
             ->findAll();
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
 
         echo view(
             'Backend/Admin/Diklat/input_diklat',
@@ -107,7 +107,7 @@ class Diklat extends BaseController
             ]
         );
 
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -471,7 +471,7 @@ class Diklat extends BaseController
 
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -483,7 +483,7 @@ class Diklat extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -850,12 +850,12 @@ class Diklat extends BaseController
                 ->findAll();
         }
 
-        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Template/header');
         echo view('Backend/ASN/Diklat/cek_diklat', [
             'nip' => $nip,
             'data_diklat' => $data
         ]);
-        echo view('Backend/Template/footer');
+        echo view('Backend/ASN/Template/footer');
     }
 
 }
