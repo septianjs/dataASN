@@ -59,7 +59,7 @@ class Diklat extends BaseController
 
         echo view('Backend/Template/header');
         echo view(
-            'Backend/Diklat/data_diklat',
+            'Backend/Admin/Diklat/data_diklat',
             $dataDiklat
         );
         echo view('Backend/Template/footer');
@@ -101,7 +101,7 @@ class Diklat extends BaseController
         echo view('Backend/Template/header');
 
         echo view(
-            'Backend/Diklat/input_diklat',
+            'Backend/Admin/Diklat/input_diklat',
             [
                 'data_asn' => $dataAsn
             ]
@@ -475,7 +475,7 @@ class Diklat extends BaseController
         );
 
         echo view(
-            'Backend/Diklat/edit_diklat',
+            'Backend/Admin/Diklat/edit_diklat',
             [
                 'data_diklat' => $dataDiklat,
                 'data_asn' => $dataAsn
