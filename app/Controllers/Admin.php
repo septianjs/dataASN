@@ -9,65 +9,6 @@ use App\Models\SertifikatModel;
 class Admin extends BaseController
 {
     // =========================================================
-    // LOGIN
-    // =========================================================
-    public function login()
-    {
-        helper('cookie');
-
-        // ==========================================
-        // AUTO LOGIN ADMIN - REMEMBER ME
-        // ==========================================
-        $remember_token = get_cookie('remember_admin');
-
-        if ($remember_token !== null) {
-
-            $modelAdmin = new M_Admin();
-
-            $dataUser = $modelAdmin->getDataAdmin([
-                'username_admin' => $remember_token,
-                'is_delete_admin' => '0'
-            ])->getRowArray();
-
-            if ($dataUser) {
-
-                $dataSession = [
-                    'ses_id'   => $dataUser['id_admin'],
-                    'ses_user' => $dataUser['nama_admin'],
-                    'ses_role' => 'admin'
-                ];
-
-                session()->set($dataSession);
-
-                return redirect()->to(
-                    base_url('/admin/dashboard-admin')
-                );
-            }
-        }
-
-        // ==========================================
-        // JIKA SUDAH LOGIN
-        // ==========================================
-        if (session()->get('ses_id') != "") {
-
-            if (session()->get('ses_role') == 'admin') {
-                return redirect()->to(
-                    base_url('/admin/dashboard-admin')
-                );
-            }
-
-            if (session()->get('ses_role') == 'asn') {
-                return redirect()->to(
-                    base_url('/asn/dashboard')
-                );
-            }
-        }
-
-        return view('Backend/Login/login');
-    }
-
-
-    // =========================================================
     // DASHBOARD ADMIN
     // =========================================================
     public function dashboard()
@@ -139,7 +80,7 @@ class Admin extends BaseController
         // TEMPLATE
         // ==========================================
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -148,7 +89,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -191,7 +132,7 @@ class Admin extends BaseController
         }
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -199,188 +140,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
-        );
-    }
-
-
-    // =========================================================
-    // AUTENTIKASI LOGIN ADMIN + ASN
-    // =========================================================
-    public function autentikasi()
-    {
-        helper('cookie');
-
-        $modelAdmin = new M_Admin();
-        $modelAsn = new AsnModel();
-
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
-        $remember = $this->request->getPost('remember');
-
-        // ==========================================
-        // VALIDASI INPUT
-        // ==========================================
-        if ($username == "" || $password == "") {
-
-            session()->setFlashdata(
-                'error',
-                'Username/NIP dan Password wajib diisi!'
-            );
-
-            return redirect()->back();
-        }
-
-
-        // =====================================================
-        // 1. CEK ADMIN
-        // =====================================================
-        $dataAdmin = $modelAdmin->getDataAdmin([
-            'username_admin' => $username,
-            'is_delete_admin' => '0'
-        ])->getRowArray();
-
-        if ($dataAdmin) {
-
-            // Password Admin
-            $passwordUser = $dataAdmin['password_admin'];
-
-            // Verifikasi password
-            if (!password_verify($password, $passwordUser)) {
-
-                session()->setFlashdata(
-                    'error',
-                    'Password Tidak Sesuai'
-                );
-
-                return redirect()->back();
-            }
-
-            // ==========================================
-            // SESSION ADMIN
-            // ==========================================
-            $dataSession = [
-                'ses_id'   => $dataAdmin['id_admin'],
-                'ses_user' => $dataAdmin['nama_admin'],
-                'ses_role' => 'admin'
-            ];
-
-            session()->set($dataSession);
-
-            session()->setFlashdata(
-                'success',
-                'Login Admin Berhasil'
-            );
-
-            // ==========================================
-            // REMEMBER ME ADMIN
-            // ==========================================
-            if ($remember != null) {
-
-                set_cookie(
-                    'remember_admin',
-                    $username,
-                    2592000
-                );
-            }
-
-            return redirect()->to(
-                base_url('/admin/dashboard-admin')
-            );
-        }
-
-
-        // =====================================================
-        // 2. JIKA BUKAN ADMIN → CEK ASN
-        // =====================================================
-        $dataAsn = $modelAsn
-            ->where('nip_asn', $username)
-            ->where('is_delete_asn', '0')
-            ->first();
-
-        if ($dataAsn) {
-
-            // Password ASN
-            $passwordUser = $dataAsn['password_asn'];
-
-            // Verifikasi password
-            if (!password_verify($password, $passwordUser)) {
-
-                session()->setFlashdata(
-                    'error',
-                    'Password Tidak Sesuai'
-                );
-
-                return redirect()->back();
-            }
-
-            // ==========================================
-            // SESSION ASN
-            // ==========================================
-            $dataSession = [
-                'ses_id'   => $dataAsn['id_asn'],
-                'ses_user' => $dataAsn['nama_asn'],
-                'ses_nip'  => $dataAsn['nip_asn'],
-                'ses_role' => 'asn'
-            ];
-
-            session()->set($dataSession);
-
-            session()->setFlashdata(
-                'success',
-                'Login Berhasil'
-            );
-
-            // ==========================================
-            // ASN TIDAK MENGGUNAKAN REMEMBER ADMIN
-            // ==========================================
-            delete_cookie('remember_admin');
-
-            return redirect()->to(
-                base_url('/asn/dashboard')
-            );
-        }
-
-
-        // =====================================================
-        // 3. USERNAME / NIP TIDAK DITEMUKAN
-        // =====================================================
-        session()->setFlashdata(
-            'error',
-            'Username atau NIP Tidak Ditemukan'
-        );
-
-        return redirect()->back();
-    }
-
-
-    // =========================================================
-    // LOGOUT
-    // =========================================================
-    public function logout()
-    {
-        helper('cookie');
-
-        // ==========================================
-        // HAPUS SESSION
-        // ==========================================
-        session()->remove('ses_id');
-        session()->remove('ses_user');
-        session()->remove('ses_role');
-        session()->remove('ses_nip');
-
-        // ==========================================
-        // HAPUS REMEMBER ME
-        // ==========================================
-        delete_cookie('remember_admin');
-
-        session()->setFlashdata(
-            'info',
-            'Anda telah keluar dari sistem'
-        );
-
-        return redirect()->to(
-            base_url('/login')
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -423,7 +183,7 @@ class Admin extends BaseController
         }
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -431,7 +191,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -610,7 +370,7 @@ class Admin extends BaseController
         ];
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -619,7 +379,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -698,7 +458,7 @@ class Admin extends BaseController
         ];
 
         echo view(
-            'Backend/Template/header',
+            'Backend/Admin/Template/header',
             $data
         );
 
@@ -708,7 +468,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer',
+            'Backend/Admin/Template/footer',
             $data
         );
     }
