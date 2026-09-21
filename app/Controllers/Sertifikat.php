@@ -986,4 +986,33 @@ class Sertifikat extends BaseController
 
         <?php
     }
+
+    public function cek_asn()
+    {
+        if (session()->get('ses_id') == "" || session()->get('ses_role') != 'asn') {
+            session()->setFlashdata('error', 'Silakan login sebagai ASN terlebih dahulu!');
+            return redirect()->to(base_url('/login'));
+        }
+
+        $nip = trim($this->request->getPost('nip') ?? session()->get('ses_nip'));
+        $data = [];
+
+        if ($nip !== '') {
+            $data = (new SertifikatModel())
+                ->select('tbl_sertifikat.*, tbl_asn.nip_asn, tbl_asn.nama_asn')
+                ->join('tbl_asn', 'tbl_asn.id_asn = tbl_sertifikat.id_asn', 'left')
+                ->where('tbl_sertifikat.is_delete_sertifikat', '0')
+                ->where('tbl_asn.nip_asn', $nip)
+                ->orderBy('tbl_sertifikat.tanggal_terbit', 'DESC')
+                ->findAll();
+        }
+
+        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Sertifikat/cek_sertifikat', [
+            'nip' => $nip,
+            'data_sertifikat' => $data
+        ]);
+        echo view('Backend/Template/footer');
+    }
+
 }
