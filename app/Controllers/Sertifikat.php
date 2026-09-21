@@ -989,12 +989,7 @@ class Sertifikat extends BaseController
 
     public function cek_asn()
     {
-        if (session()->get('ses_id') == "" || session()->get('ses_role') != 'asn') {
-            session()->setFlashdata('error', 'Silakan login sebagai ASN terlebih dahulu!');
-            return redirect()->to(base_url('/login'));
-        }
-
-        $nip = trim($this->request->getPost('nip') ?? session()->get('ses_nip'));
+        $nip = (string) session()->get('ses_nip');
         $data = [];
 
         if ($nip !== '') {
