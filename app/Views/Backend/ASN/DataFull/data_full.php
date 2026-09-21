@@ -1,0 +1,5 @@
+<div class="container-fluid" style="margin-top:80px;padding:25px;"><div class="panel panel-default" style="border-radius:14px;"><div class="panel-body">
+<h3><i class="bi bi-people"></i> Data Full ASN</h3><p class="text-muted">Daftar data ASN aktif.</p>
+<div class="table-responsive"><table class="table table-bordered table-striped"><thead><tr><th>No</th><th>NIP</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Jabatan</th><th>Pangkat/Golongan</th><th>Unit Kerja</th></tr></thead><tbody>
+<?php $no=1; foreach(($data_asn ?? []) as $row): ?><tr><td><?= $no++; ?></td><td><?= esc($row['nip_asn']); ?></td><td><?= esc($row['nama_asn']); ?></td><td><?= esc($row['email_asn']); ?></td><td><?= esc($row['no_hp_asn']); ?></td><td><?= esc($row['jabatan_asn']); ?></td><td><?= esc($row['pangkat_golongan_asn']); ?></td><td><?= esc($row['unit_kerja_asn']); ?></td></tr><?php endforeach; ?><?php if(empty($data_asn)): ?><tr><td colspan="8" class="text-center">Belum ada data ASN.</td></tr><?php endif; ?></tbody></table></div>
+</div></div></div>
