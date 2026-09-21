@@ -1124,20 +1124,21 @@ class DataAsn extends BaseController
 
     public function data_full()
     {
-        if (session()->get('ses_id') == "" || session()->get('ses_role') != 'asn') {
-            session()->setFlashdata('error', 'Silakan login sebagai ASN terlebih dahulu!');
+        if (session()->get('ses_id') === null || session()->get('ses_role') !== 'asn') {
             return redirect()->to(base_url('/login'));
         }
 
         $modelAsn = new AsnModel();
 
         $data = $modelAsn
+            ->where('id_asn', session()->get('ses_id'))
             ->where('is_delete_asn', '0')
-            ->orderBy('nama_asn', 'ASC')
-            ->findAll();
+            ->first();
 
         echo view('Backend/ASN/Template/header');
-        echo view('Backend/ASN/DataFull/data_full', ['data_asn' => $data]);
+        echo view('Backend/ASN/DataFull/data_full', [
+            'data_asn' => $data ? [$data] : []
+        ]);
         echo view('Backend/ASN/Template/footer');
     }
 
