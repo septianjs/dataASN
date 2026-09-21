@@ -41,7 +41,7 @@ class DataAsn extends BaseController
         ];
 
         echo view('Backend/Template/header');
-        echo view('Backend/DataAsn/data_asn', $dataAsn);
+        echo view('Backend/Admin/DataAsn/data_asn', $dataAsn);
         echo view('Backend/Template/footer');
     }
 
@@ -65,7 +65,7 @@ class DataAsn extends BaseController
         }
 
         echo view('Backend/Template/header');
-        echo view('Backend/DataAsn/input_asn');
+        echo view('Backend/Admin/DataAsn/input_asn');
         echo view('Backend/Template/footer');
     }
 
@@ -747,7 +747,7 @@ class DataAsn extends BaseController
         );
 
         echo view(
-            'Backend/DataAsn/edit_asn',
+            'Backend/Admin/DataAsn/edit_asn',
             [
                 'data_asn' => $dataAsn
             ]
