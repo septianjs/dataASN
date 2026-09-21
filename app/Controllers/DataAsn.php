@@ -11,7 +11,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -50,7 +50,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -74,7 +74,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -247,7 +247,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -339,7 +339,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -677,7 +677,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -766,7 +766,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
@@ -1000,7 +1000,7 @@ class DataAsn extends BaseController
     {
         if (
             session()->get('ses_id') == "" ||
-            session()->get('ses_user') == ""
+            session()->get('ses_role') != 'admin'
         ) {
             session()->setFlashdata(
                 'error',
