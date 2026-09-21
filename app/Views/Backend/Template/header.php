@@ -140,7 +140,7 @@
         <div class="navbar-header">
 
             <a class="navbar-brand"
-               href="<?= base_url('admin/dashboard'); ?>">
+               href="<?= base_url('admin/dashboard-admin'); ?>">
 
                 <span class="brand-main">
                     BPSDM
