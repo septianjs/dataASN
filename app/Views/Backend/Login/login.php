@@ -6,7 +6,7 @@
     <title>Login WEB Data ASN</title>
 
     <!-- Mempertahankan CSS Bawaan Anda -->
-    <link href="/Assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url('Assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     
     <!-- Font Modern: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -282,9 +282,9 @@
     </div>
 
     <!-- Script Esensial -->
-    <script src="/Assets/js/jquery-1.11.1.min.js"></script>
-    <script src="/Assets/js/bootstrap.min.js"></script>
-    <script src="/Assets/js/sweetalert2.min.js"></script>
+    <script src="<?= base_url('Assets/js/jquery-1.11.1.min.js'); ?>"></script>
+    <script src="<?= base_url('Assets/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?= base_url('Assets/js/sweetalert2.min.js'); ?>"></script>
     
     <!-- Script Tampilkan/Sembunyikan Password -->
     <script>
