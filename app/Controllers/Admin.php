@@ -143,7 +143,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/dashboard',
+            'Backend/Admin/Dashboard/dashboard_admin',
             $data
         );
 
@@ -195,7 +195,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/MasterAdmin/master_data_admin'
+            'Backend/Admin/DataAdmin/data_admin'
         );
 
         echo view(
@@ -427,7 +427,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/MasterAdmin/input_admin'
+            'Backend/Admin/DataAdmin/input_admin'
         );
 
         echo view(
@@ -614,7 +614,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/MasterAdmin/master_data_admin',
+            'Backend/Admin/DataAdmin/data_admin',
             $dataUser
         );
 
@@ -703,7 +703,7 @@ class Admin extends BaseController
         );
 
         echo view(
-            'Backend/MasterAdmin/edit_admin',
+            'Backend/Admin/DataAdmin/edit_admin',
             $data
         );
 
