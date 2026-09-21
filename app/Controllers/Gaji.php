@@ -51,7 +51,7 @@ class Gaji extends BaseController
 
         // Tampilkan view data gaji
         echo view(
-            'Backend/Gaji/data_gaji',
+            'Backend/Admin/Gaji/data_gaji',
             [
                 'data_gaji' => $dataGaji
             ]
@@ -105,7 +105,7 @@ class Gaji extends BaseController
 
         // View input
         echo view(
-            'Backend/Gaji/input_gaji',
+            'Backend/Admin/Gaji/input_gaji',
             [
                 'data_asn' => $dataAsn
             ]
@@ -508,7 +508,7 @@ class Gaji extends BaseController
 
         // View edit
         echo view(
-            'Backend/Gaji/edit_gaji',
+            'Backend/Admin/Gaji/edit_gaji',
             [
                 'data_gaji' => $dataGaji,
                 'data_asn'  => $dataAsn
@@ -974,7 +974,7 @@ class Gaji extends BaseController
 
         // View import
         echo view(
-            'Backend/Gaji/import_gaji'
+            'Backend/Admin/Gaji/import_gaji'
         );
 
 
