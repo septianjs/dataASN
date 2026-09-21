@@ -60,7 +60,7 @@
                         </div>
 
 
-                        <!-- Nama ASN -->
+                        <!-- Nama AN -->
                         <div class="form-group">
                             <label>Nama ASN</label>
 
