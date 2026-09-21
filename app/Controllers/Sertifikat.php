@@ -60,12 +60,12 @@ class Sertifikat extends BaseController
             'data_sertifikat'   => $data
         ];
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
         echo view(
             'Backend/Admin/Sertifikat/data_sertifikat',
             $dataSertifikat
         );
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -97,7 +97,7 @@ class Sertifikat extends BaseController
             ->orderBy('nama_asn', 'ASC')
             ->findAll();
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
 
         echo view(
             'Backend/Admin/Sertifikat/input_sertifikat',
@@ -106,7 +106,7 @@ class Sertifikat extends BaseController
             ]
         );
 
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -523,7 +523,7 @@ class Sertifikat extends BaseController
 
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -538,7 +538,7 @@ class Sertifikat extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -1007,12 +1007,12 @@ class Sertifikat extends BaseController
                 ->findAll();
         }
 
-        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Template/header');
         echo view('Backend/ASN/Sertifikat/cek_sertifikat', [
             'nip' => $nip,
             'data_sertifikat' => $data
         ]);
-        echo view('Backend/Template/footer');
+        echo view('Backend/ASN/Template/footer');
     }
 
 }
