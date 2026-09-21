@@ -1520,4 +1520,23 @@ class Gaji extends BaseController
 
         <?php
     }
+
+    public function cek_asn()
+    {
+        if (session()->get('ses_id') == "" || session()->get('ses_role') != 'asn') {
+            session()->setFlashdata('error', 'Silakan login sebagai ASN terlebih dahulu!');
+            return redirect()->to(base_url('/login'));
+        }
+
+        $nip = trim($this->request->getPost('nip') ?? session()->get('ses_nip'));
+        $data = $nip !== '' ? $this->gajiModel->getGajiByNip($nip) : [];
+
+        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Gaji/cek_gaji', [
+            'nip' => $nip,
+            'data_gaji' => $data
+        ]);
+        echo view('Backend/Template/footer');
+    }
+
 }
