@@ -40,9 +40,9 @@ class DataAsn extends BaseController
             'data_asn' => $data
         ];
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
         echo view('Backend/Admin/DataAsn/data_asn', $dataAsn);
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -64,9 +64,9 @@ class DataAsn extends BaseController
             return;
         }
 
-        echo view('Backend/Template/header');
+        echo view('Backend/Admin/Template/header');
         echo view('Backend/Admin/DataAsn/input_asn');
-        echo view('Backend/Template/footer');
+        echo view('Backend/Admin/Template/footer');
     }
 
 
@@ -743,7 +743,7 @@ class DataAsn extends BaseController
 
 
         echo view(
-            'Backend/Template/header'
+            'Backend/Admin/Template/header'
         );
 
         echo view(
@@ -754,7 +754,7 @@ class DataAsn extends BaseController
         );
 
         echo view(
-            'Backend/Template/footer'
+            'Backend/Admin/Template/footer'
         );
     }
 
@@ -1114,12 +1114,12 @@ class DataAsn extends BaseController
             ->where('is_delete_asn', '0')
             ->first();
 
-        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Template/header');
         echo view('Backend/ASN/Dashboard/dashboard_asn', [
             'data_asn' => $dataAsn,
             'nama_asn' => $dataAsn['nama_asn'] ?? session()->get('ses_user')
         ]);
-        echo view('Backend/Template/footer');
+        echo view('Backend/ASN/Template/footer');
     }
 
     public function data_full()
@@ -1136,9 +1136,9 @@ class DataAsn extends BaseController
             ->orderBy('nama_asn', 'ASC')
             ->findAll();
 
-        echo view('Backend/Template/header');
+        echo view('Backend/ASN/Template/header');
         echo view('Backend/ASN/DataFull/data_full', ['data_asn' => $data]);
-        echo view('Backend/Template/footer');
+        echo view('Backend/ASN/Template/footer');
     }
 
 }
